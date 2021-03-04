@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edmin</title>
+        <link type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'bootstrap/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/theme.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'images/icons/css/font-awesome.css' %}" rel="stylesheet">
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+            rel='stylesheet'>
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">Edmin </a>
+                    <div class="nav-collapse collapse navbar-inverse-collapse">
+                        <ul class="nav nav-icons">
+                            <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
+                            <li><a href="#"><i class="icon-eye-open"></i></a></li>
+                            <li><a href="#"><i class="icon-bar-chart"></i></a></li>
+                        </ul>
+                        <form class="navbar-search pull-left input-append" action="#">
+                        <input type="text" class="span3">
+                        <button class="btn" type="button">
+                            <i class="icon-search"></i>
+                        </button>
+                        </form>
+                        <ul class="nav pull-right">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Item No. 1</a></li>
+                                    <li><a href="#">Don't Click</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Example Header</li>
+                                    <li><a href="#">A Separated link</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Support </a></li>
+                            <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="images/user.png" class="nav-avatar" />
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Your Profile</a></li>
+                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="#">Account Settings</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.nav-collapse -->
+                </div>
+            </div>
+            <!-- /navbar-inner -->
+        </div>
+        <!-- /navbar -->
+         <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <div class="sidebar">
+                            <ul class="widget widget-menu unstyled">
+                                <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>Home
+                                </a></li>
+                                <li><a href="activity.html"><i class="menu-icon icon-bullhorn"></i>News Feed </a>
+
+                            </ul>
+                            <!--/.widget-nav-->
+
+
+
+                        </div>
+                        <!--/.sidebar-->
+                    </div>
+                    <!--/.span3-->
+                    <div class="span9">
+                        <div class="content">
+                            <div class="btn-controls">
+
+                                <div class="btn-box-row row-fluid">
+                                    <div class="span8">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <a href="{% url 'add_car' %}" class="btn-box small span4"><i class="icon-envelope"></i><b>List Car</b>
+                                                </a><a href="#" class="btn-box small span4"><i class="icon-group"></i><b>Clients</b>
+                                                </a><a href="#" class="btn-box small span4"><i class="icon-exchange"></i><b>Expenses</b>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--/#btn-controls-->
+                            <!--/.module-->
+                            <div class="module hide">
+                                <div class="module-head">
+                                    <h3>
+                                        Adjust Budget Range</h3>
+                                </div>
+                                <div class="module-body">
+                                    <div class="form-inline clearfix">
+                                        <a href="#" class="btn pull-right">Update</a>
+                                        <label for="amount">
+                                            Price range:</label>
+                                        &nbsp;
+                                        <input type="text" id="amount" class="input-" />
+                                    </div>
+                                    <hr />
+                                    <div class="slider-range">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="module">
+                                <div class="module-head">
+                                    <h3>
+                                        DataTables</h3>
+                                </div>
+
+                                <form action="{% url 'home' %}" method="get">
+                                    <label for="featured">Format</label>
+                                    <select name="make">
+                                        <option value="-" />------</option>
+                                        {% for make in makes %}
+                                            <option value="{{make.name}}" />{{make.name}}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <select name="year">
+                                        <option value="-" />------</option>
+                                        {% for year in years %}
+                                        <option value="{{year.year}}" />{{year.year}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="submit" value="Filter" />
+                                </form>
+
+
+
+
+
+
+
+                                <div class="module-body table">
+
+                                    <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
+                                        width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    seller_name
+                                                </th>
+                                                <th>
+                                                    seller_mobile
+                                                </th>
+                                                <th>
+                                                    make
+                                                </th>
+                                                <th>
+                                                    model
+                                                </th>
+                                                <th>
+                                                    year
+                                                </th>
+                                                 <th>
+                                                    Status
+                                                </th>
+                                                {% if request.user.is_superuser %}
+                                                <th>
+                                                    Make Car Available
+                                                </th>
+                                                {% endif %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for car in cars %}
+                                            <tr class="odd gradeX">
+                                                <td>
+                                                    {{car.seller_name}}
+                                                </td>
+                                                <td>
+                                                    {{car.seller_mobile}}
+                                                </td>
+                                                <td>
+                                                    {{car.make.name}}
+                                                </td>
+                                                <td class="center">
+                                                  {{car.car_model}}
+                                                </td>
+                                                <td class="center">
+                                                    {{car.year.year}}
+                                                </td>
+                                                <td>
+                                                    {% if not car.is_buy%}
+                                                    <a href="{% url 'get_email' car.id %}"><button type="button" class="btn btn-primary">Buy now</button>
+                                                    </a>
+                                                    {% else %}
+                                                        <button type="button" class="btn btn-danger">Sold out</button>
+                                                    {% endif%}
+                                                </td>
+                                                {% if request.user.is_superuser %}
+                                                <td>
+                                                    <a href="{% url 'make_available' car.id %}"> <button type="button" class="btn btn-primary">Make Available</button></a>
+
+                                                </td>
+                                                {% endif %}
+
+                                            </tr>
+                                        {% endfor %}
+
+
+
+                                        </tbody>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--/.module-->
+                        </div>
+                        <!--/.content-->
+                    </div>
+                    <!--/.span9-->
+                </div>
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.wrapper-->
+        <div class="footer">
+            <div class="container">
+                <b class="copyright">&copy; 2014 Edmin - EGrappler.com </b>All rights reserved.
+            </div>
+        </div>
+        <script src="{% static 'scripts/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/jquery-ui-1.10.1.custom.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/flot/jquery.flot.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/flot/jquery.flot.resize.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/datatables/jquery.dataTables.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/common.js' %}" type="text/javascript"></script>
+
+    </body>
